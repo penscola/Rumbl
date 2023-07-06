@@ -1,6 +1,5 @@
 defmodule RumblWeb.SessionController do
   use RumblWeb, :controller
-  alias Rumbl.Accounts
 
   def new(conn, _) do
     render(conn, "new.html")
