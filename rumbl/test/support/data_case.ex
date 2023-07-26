@@ -13,6 +13,11 @@ defmodule Rumbl.DataCase do
     end
   end
 
+  def setup_sandbox(tags) do
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rumbl.Repo, shared: not tags[:async])
+    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+  end
+
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Rumbl.Repo)
 
